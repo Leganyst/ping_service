@@ -92,7 +92,7 @@ sudo netstat -tulnp | grep -E ':80|:8080|:5672|:15672|:5432'
 ### **2️⃣ Клонирование репозитория**
 ```sh
 git clone git@github.com:Leganyst/ping_service.git
-cd vk_test
+cd ping_service
 ```
 
 ### **3️⃣ Выбор реализации**
