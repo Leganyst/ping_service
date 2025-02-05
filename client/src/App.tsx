@@ -12,7 +12,6 @@ interface ContainerStatus {
 
 const API_URL = "/api/containers";
 
-// Функция для форматирования даты
 const formatDate = (isoString: string) => {
   return format(new Date(isoString), "dd.MM.yyyy HH:mm:ss", { locale: ru });
 };
@@ -31,9 +30,9 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    fetchData(); // Загружаем данные при старте
-    const interval = setInterval(fetchData, 5000); // Обновляем раз в 5 сек
-    return () => clearInterval(interval); // Чистим таймер при размонтировании
+    fetchData(); 
+    const interval = setInterval(fetchData, 5000);
+    return () => clearInterval(interval);
   }, []);
 
   const columns = [
@@ -43,7 +42,7 @@ const App: React.FC = () => {
       title: "Последняя проверка контейнера",
       dataIndex: "last_checked",
       key: "last_checked",
-      render: (text: string) => formatDate(text), // Форматируем дату перед отображением
+      render: (text: string) => formatDate(text),
     },
   ];
 

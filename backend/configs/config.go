@@ -23,8 +23,6 @@ func LoadConfig() *Config {
 }
 
 func LoadConfigDB() *ConfigDB {
-	// Загружаем переменные окружения из файла .env
-
 	return &ConfigDB{
 		User:     os.Getenv("POSTGRES_USER"),
 		Password: os.Getenv("POSTGRES_PASSWORD"),
