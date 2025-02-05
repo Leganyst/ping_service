@@ -16,7 +16,6 @@ var (
 	once    sync.Once
 )
 
-// InitRabbitMQ инициализирует соединение с RabbitMQ
 func InitRabbitMQ() {
 	once.Do(func() {
 		rabbitMQURL := os.Getenv("RABBITMQ_URL")
@@ -51,7 +50,6 @@ func InitRabbitMQ() {
 	})
 }
 
-// GetChannel возвращает канал для отправки сообщений
 func GetChannel() *amqp.Channel {
 	return channel
 }

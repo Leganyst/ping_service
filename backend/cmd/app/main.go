@@ -41,12 +41,12 @@ func main() {
 	r := routes.SetupRouter()
 
 	r.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"*"}, // Разрешаем запросы от всех доменов
+		AllowOrigins:     []string{"*"},
 		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
 		AllowHeaders:     []string{"Origin", "Content-Type", "Accept"},
 		ExposeHeaders:    []string{"Content-Length"},
 		AllowCredentials: true,
-		MaxAge:           12 * time.Hour, // Кешируем CORS-ответ на 12 часов
+		MaxAge:           12 * time.Hour,
 	}))
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 

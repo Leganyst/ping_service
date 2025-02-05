@@ -47,7 +47,6 @@ func CreateContainer(container *models.ContainerStatus) error {
 		return result.Error
 	}
 
-	// Устанавливаем время создания
 	container.LastChecked = time.Now()
 
 	log.Printf("[INFO] Создаём новый контейнер: %+v", container)

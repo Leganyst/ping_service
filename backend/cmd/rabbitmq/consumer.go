@@ -9,12 +9,12 @@ import (
 )
 
 func ConsumeMessages() {
-	InitRabbitMQ() // Убеждаемся, что соединение создано
+	InitRabbitMQ()
 
 	msgs, err := GetChannel().Consume(
 		queueName,
 		"",
-		false, // Вручную подтверждаем обработку
+		false,
 		false,
 		false,
 		false,
@@ -36,13 +36,12 @@ func ConsumeMessages() {
 
 		log.Printf("[INFO] Получено сообщение: %+v", container)
 
-		// Сохраняем контейнер в БД
 		err := repository.CreateContainer(&container)
 		if err != nil {
 			log.Printf("[ERROR] Ошибка сохранения в БД: %s", err)
-			msg.Nack(false, false) // Удаляем сообщение, если ошибка
+			msg.Nack(false, false)
 		} else {
-			msg.Ack(false) // Подтверждаем обработку
+			msg.Ack(false)
 		}
 	}
 }

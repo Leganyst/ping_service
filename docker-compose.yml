@@ -49,11 +49,10 @@ services:
   rabbitmq:
     image: rabbitmq:3-management
     ports:
-      - "5672:5672"   # AMQP (основной порт RabbitMQ)
-      - "15672:15672" # Веб-интерфейс RabbitMQ
-    environment:
-      RABBITMQ_DEFAULT_USER: guest
-      RABBITMQ_DEFAULT_PASS: guest
+      - "5672:5672" 
+      - "15672:15672"
+    env_file:
+      - .env
     restart: always
     healthcheck:
       test: ["CMD", "rabbitmqctl", "status"]
