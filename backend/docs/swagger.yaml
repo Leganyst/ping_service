@@ -1,0 +1,96 @@
+basePath: /
+definitions:
+  models.ContainerStatus:
+    properties:
+      id:
+        type: integer
+      ip_address:
+        type: string
+      last_checked:
+        type: string
+      status:
+        type: string
+    type: object
+  models.ErrorResponse:
+    properties:
+      error:
+        type: string
+    type: object
+  models.SuccessResponse:
+    properties:
+      message:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: API для мониторинга контейнеров Docker.
+  title: Container Monitoring API
+  version: "1.0"
+paths:
+  /containers:
+    get:
+      description: Возвращает список всех контейнеров
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.ContainerStatus'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Получить контейнеры
+      tags:
+      - Containers
+    post:
+      consumes:
+      - application/json
+      description: Создаёт новую запись о контейнере в базе данных
+      parameters:
+      - description: Данные контейнера
+        in: body
+        name: container
+        required: true
+        schema:
+          $ref: '#/definitions/models.ContainerStatus'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.ContainerStatus'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Добавить контейнер
+      tags:
+      - Containers
+  /containers/{ip}:
+    delete:
+      description: Удаляет контейнер из базы данных по IP
+      parameters:
+      - description: IP контейнера
+        in: path
+        name: ip
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SuccessResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Удалить контейнер
+      tags:
+      - Containers
+swagger: "2.0"
