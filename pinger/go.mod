@@ -2,10 +2,7 @@ module pinger
 
 go 1.23.4
 
-require (
-	github.com/docker/docker v26.1.4+incompatible
-	github.com/streadway/amqp v1.1.0
-)
+require github.com/docker/docker v26.1.4+incompatible
 
 require (
 	github.com/Microsoft/go-winio v0.4.14 // indirect
