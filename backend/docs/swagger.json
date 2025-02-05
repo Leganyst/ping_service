@@ -36,44 +36,6 @@
                         }
                     }
                 }
-            },
-            "post": {
-                "description": "Создаёт новую запись о контейнере в базе данных",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Containers"
-                ],
-                "summary": "Добавить контейнер",
-                "parameters": [
-                    {
-                        "description": "Данные контейнера",
-                        "name": "container",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.ContainerStatus"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "Created",
-                        "schema": {
-                            "$ref": "#/definitions/models.ContainerStatus"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/models.ErrorResponse"
-                        }
-                    }
-                }
             }
         },
         "/containers/{ip}": {

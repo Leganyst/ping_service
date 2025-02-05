@@ -7,6 +7,7 @@ services:
       - "8080:8080"
     depends_on:
       - database
+      - rabbitmq
     restart: always
 
   pinger:
@@ -15,8 +16,10 @@ services:
       - .env
     depends_on:
       - backend
+      - rabbitmq
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock 
+    restart: always
 
   database:
     image: postgres
@@ -42,3 +45,18 @@ services:
       - frontend
       - backend
     restart: always
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"   # AMQP (основной порт RabbitMQ)
+      - "15672:15672" # Веб-интерфейс RabbitMQ
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    restart: always
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 10s
+      timeout: 5s
+      retries: 5

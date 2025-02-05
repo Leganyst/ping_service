@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"vktest/api/routes"
+	"vktest/cmd/rabbitmq"
 	"vktest/configs"
 	"vktest/database"
 	_ "vktest/docs"
@@ -36,6 +37,7 @@ func main() {
 	fmt.Printf("Config struct: %+v\n", cfg)
 
 	database.ConnectDB()
+	go rabbitmq.ConsumeMessages()
 	r := routes.SetupRouter()
 
 	r.Use(cors.New(cors.Config{
@@ -46,7 +48,6 @@ func main() {
 		AllowCredentials: true,
 		MaxAge:           12 * time.Hour, // Кешируем CORS-ответ на 12 часов
 	}))
-
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	port := ":8080"

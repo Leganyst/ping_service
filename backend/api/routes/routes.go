@@ -10,7 +10,7 @@ func SetupRouter() *gin.Engine {
 	r := gin.Default()
 
 	r.GET("/containers", handlers.GetContainers)
-	r.POST("/containers", handlers.CreateContainer)
+	// r.POST("/containers", handlers.CreateContainer)
 	r.DELETE("/containers/:ip", handlers.DeleteContainer)
 
 	return r

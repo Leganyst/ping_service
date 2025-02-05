@@ -47,31 +47,6 @@ paths:
       summary: Получить контейнеры
       tags:
       - Containers
-    post:
-      consumes:
-      - application/json
-      description: Создаёт новую запись о контейнере в базе данных
-      parameters:
-      - description: Данные контейнера
-        in: body
-        name: container
-        required: true
-        schema:
-          $ref: '#/definitions/models.ContainerStatus'
-      produces:
-      - application/json
-      responses:
-        "201":
-          description: Created
-          schema:
-            $ref: '#/definitions/models.ContainerStatus'
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/models.ErrorResponse'
-      summary: Добавить контейнер
-      tags:
-      - Containers
   /containers/{ip}:
     delete:
       description: Удаляет контейнер из базы данных по IP

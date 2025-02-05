@@ -1,11 +1,7 @@
 package handlers
 
 import (
-	"encoding/json"
-	"io"
-	"log"
 	"net/http"
-	"vktest/models"
 	"vktest/repository"
 
 	"github.com/gin-gonic/gin"
@@ -27,6 +23,7 @@ func GetContainers(c *gin.Context) {
 	c.JSON(http.StatusOK, containers)
 }
 
+/*
 // CreateContainer добавляет новый контейнер
 // @Summary Добавить контейнер
 // @Description Создаёт новую запись о контейнере в базе данных
@@ -61,6 +58,7 @@ func CreateContainer(c *gin.Context) {
 	log.Printf("[INFO] Контейнер %s успешно сохранён: %+v", container.IPAddress, container)
 	c.JSON(http.StatusCreated, container)
 }
+*/
 
 // DeleteContainer удаляет контейнер по IP
 // @Summary Удалить контейнер
